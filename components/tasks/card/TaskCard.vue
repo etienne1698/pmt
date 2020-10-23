@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="box task-card pt-2 pl-2 pr-2 pb-2" @click="dialogOpen = true">
-        <b-checkbox @change.native="toggleDone" @click.native.stop v-model="task.done">
-          <span> {{ task.name }} </span>
-        </b-checkbox>
+        <div class="level mb-1 task-card-header">
+          <div class="level-start">
+            <b-checkbox class="level-item" @change.native="toggleDone" @click.native.stop v-model="task.done">
+              <span> {{ task.name }} </span>
+            </b-checkbox>
+          </div>
+        </div>
 
          <div @click.stop class="task-card-action">
            <div class="mb-1">
@@ -59,6 +63,13 @@ export default {
   width: 100%;
   padding: 5px;
   margin-bottom: 5px;
+  .task-card-header {
+    .icon {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
   .task-card-action {
     max-width: 30%;
   }

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Task from "~/models/Task";
-import TaskCard from "~/components/tasks/card/TaskCard";
+import TaskCard from "~/components/tasks/card/TaskCard.vue";
 export default {
   name: "calendar",
   components: {TaskCard},
@@ -37,7 +37,7 @@ export default {
       return !this.tasks || !this.tasks.length ? [] : this.tasks.map(task => {
         return {
           key: task.id,
-          dates: task.dueDate,
+          dates: [task.startDate, task.dueDate],
           customData: {task}
         };
       });

@@ -10,9 +10,13 @@ export default class Task extends ObjectModel implements IDeserializable {
   description?: string;
   user?: number | User;
   dueDate?: string | Date;
+  startDate?: string | Date;
 
-  getDateFormat() {
+  getDueDateFormat() {
     return formatDate(this.dueDate);
+  }
+  getStartDateFormat() {
+    return formatDate(this.startDate);
   }
 
   deserialize(input: any): this {
@@ -21,6 +25,7 @@ export default class Task extends ObjectModel implements IDeserializable {
       this.user = new User(this.user);
     }
     this.dueDate = this.dueDate ? new Date(this.dueDate) : null;
+    this.startDate = this.startDate ? new Date(this.startDate) : null;
     return this;
   }
 

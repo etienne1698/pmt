@@ -20,7 +20,15 @@ export default {
       this.task.dueDate = dueDate;
       await this.$providers.tasks.put(this.task.id, {dueDate});
       this.$buefy.toast.open({
-        message: `Task "${this.task.name??''}" due date is now : ${this.task.getDateFormat()}`,
+        message: `Task "${this.task.name??''}" due date is now : ${this.task.getDueDateFormat()}`,
+        type: 'is-success'
+      });
+    },
+    async startDateChange(startDate: Date) {
+      this.task.startDate = startDate;
+      await this.$providers.tasks.put(this.task.id, {startDate});
+      this.$buefy.toast.open({
+        message: `Task "${this.task.name??''}" start date is now : ${this.task.getStartDateFormat()}`,
         type: 'is-success'
       });
     },

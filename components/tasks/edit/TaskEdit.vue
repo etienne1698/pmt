@@ -13,6 +13,10 @@
 
 
     <div>
+      <b-field label="Start date">
+        <DueDatePicker @change="startDateChange" :value="task.startDate" :input="true"/>
+
+      </b-field>
       <b-field label="Due date">
         <DueDatePicker @change="dueDateChange" :value="task.dueDate" :input="true"/>
 
