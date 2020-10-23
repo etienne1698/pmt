@@ -95,6 +95,11 @@ export default {
           icon: 'home',
           to: {name: 'index'}
         },
+        {
+          title: 'Calendar',
+          icon: 'calendar',
+          to: {name: 'calendar'}
+        },
       ]
     }
   }

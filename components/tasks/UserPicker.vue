@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts">
-import User from "~/models/User";
 import UserPickerMixin from "~/mixins/UserPickerMixin";
 
 export default {

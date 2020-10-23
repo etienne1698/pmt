@@ -1,32 +1,27 @@
 <template>
-  <b-dropdown position="is-bottom-right" append-to-body>
+  <vc-date-picker mode="dateTime" :popover="{ visibility: 'click' }" v-model="dateSelected" @input="change">
+    <template v-slot="{ inputValue, inputEvents }" >
+      <div :value="inputValue" v-on="inputEvents">
+        <div class="picker" v-if="!dateSelected && !input">
+          <b-icon icon="calendar" size="is-small"/>
+        </div>
 
-    <div v-if="!dateSelected" slot="trigger" class="picker">
-      <b-icon icon="calendar" size="is-small"/>
-    </div>
+        <span v-if="dateSelected && !input" :value="inputValue" v-on="inputEvents" class="picker">
+          {{ dateSelected | formatDate }}
+        </span>
 
-    <span v-else slot="trigger" class="picker">
-      {{ dateSelected | formatDate }}
-    </span>
-
-    <b-dropdown-item class="pl-2 pt-2 pb-2 pr-2" custom>
-      <b-datepicker
-        :show-week-number="true"
-        :locale="undefined"
-        inline
-        :value="dateSelected"
-        @input="change">
-      </b-datepicker>
-    </b-dropdown-item>
-  </b-dropdown>
+        <b-input v-if="input" icon="calendar" readonly :value="dateSelected | formatDate" />
+      </div>
+    </template>
+  </vc-date-picker>
 </template>
 
 <script lang="ts">
 
 
 export default {
-  name: "UserPicker",
-  props: ['value'],
+  name: "DueDatePicker",
+  props: ['value', 'input'],
   data: () => {
     return {
       dateSelected: null,

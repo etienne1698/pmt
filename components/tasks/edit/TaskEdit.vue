@@ -14,14 +14,8 @@
 
     <div>
       <b-field label="Due date">
-        <b-datepicker
-          :show-week-number="true"
-          :locale="undefined"
-          icon="calendar-today"
-          trap-focus
-          :value="task.dueDate"
-          @input="dueDateChange">
-        </b-datepicker>
+        <DueDatePicker @change="dueDateChange" :value="task.dueDate" :input="true"/>
+
       </b-field>
       <b-field label="User">
         <UserPickerField @change="userChange" :value="task.user" />
@@ -33,11 +27,11 @@
 <script lang="ts">
 
 import TasksMixin from "~/mixins/TasksMixin";
-import UserPickerField from "~/components/tasks/edit/UserPickerField.vue";
-
+import UserPickerField from "~/components/tasks/UserPickerField.vue";
+import DueDatePicker from "~/components/tasks/DueDatePicker.vue";
 export default {
   name: 'TaskDetail',
-  components: {UserPickerField},
+  components: {UserPickerField, DueDatePicker},
   props: ['value'],
   mixins: [TasksMixin],
   mounted() {

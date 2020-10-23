@@ -26,8 +26,8 @@
 
 <script lang="ts">
 import TaskEdit from "~/components/tasks/edit/TaskEdit.vue";
-import UserPicker from "~/components/tasks/card/UserPicker.vue";
-import DueDatePicker from '~/components/tasks/card/DueDatePicker.vue';
+import UserPicker from "~/components/tasks/UserPicker.vue";
+import DueDatePicker from '~/components/tasks/DueDatePicker.vue';
 import TasksMixin from "~/mixins/TasksMixin";
 
 export default {
