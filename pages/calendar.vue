@@ -6,9 +6,13 @@
       <template v-slot:day-content="{ day, attributes }">
         <div class="day-box">
           <span>{{ day.day }}</span>
-          <div v-for="attr in attributes" :style="{background: attr.customData.color}" class="box mb-1">
-            {{ attr.customData.title }}
-          </div>
+          <TaskCard
+            v-for="attr in attributes"
+            :key="attr.key"
+            @deleted=""
+            :value="attr.customData.task"
+          />
+
         </div>
       </template>
     </vc-calendar>
@@ -16,43 +20,34 @@
 </template>
 
 <script lang="ts">
+import Task from "~/models/Task";
+import TaskCard from "~/components/tasks/card/TaskCard";
 export default {
   name: "calendar",
+  components: {TaskCard},
   async mounted() {
     try {
-      console.log(await this.$providers.tasks.get());
+      const response = await this.$providers.tasks.get();
+      this.tasks = response.data;
     } catch (err) {}
+  },
+  computed: {
+    attributes() {
+      console.log(this.tasks)
+      return !this.tasks || !this.tasks.length ? [] : this.tasks.map(task => {
+        return {
+          key: task.id,
+          dates: task.dueDate,
+          customData: {task}
+        };
+      });
+    }
   },
   data: () => {
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
     return {
-      attributes: [
-        {
-          key: 1,
-          customData: {
-            title: 'Test',
-            color: 'red'
-          },
-          dates: new Date(year, month, 1),
-        },
-        {
-          key: 2,
-          customData: {
-            title: 'Test 2',
-            color: 'blue'
-          },
-          dates: new Date(year, month, 6),
-        },
-        {
-          key: 3,
-          customData: {
-            title: 'Test 3',
-            color: 'orange'
-          },
-          dates: new Date(year, month, 6),
-        },
-      ],
+      tasks: [] as Array<Task>
     };
   }
 }
