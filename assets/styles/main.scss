@@ -1,0 +1,113 @@
+@import "/assets/styles/themes/main";
+
+body {
+  background: $bodyBackground;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  border-left: 1px dashed #E6ECF8;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+.transparent-button {
+  background: transparent!important;
+  &:focus, &:hover {
+    color: $primary!important;
+  }
+}
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+}
+
+.p-1 {
+  padding: 1em;
+}
+.dropdown-content {
+  button {
+    width: 100%;
+  }
+}
+.button:focus, .button.is-focused {
+  border: none;
+}
+.dropdown-menu {
+  cursor: pointer;
+  .dropdown-content, .dropdown-item {
+    padding: 0;
+  }
+}
+.hidden-input {
+  input {
+    &:not(:focus) {
+      background: transparent;
+      padding-left: 0;
+      box-shadow: none;
+      border: none;
+    }
+  }
+}
+.divider {
+  width: 80%;
+  margin-left: 10%;
+  background: #dbdbdb;
+  height: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+$project-card-link-card-size: 120px;
+$project-card-link-card-radius: 20px;
+.project-card-link {
+  cursor: pointer;
+  padding: 8px 8px 30px 8px;
+  display: inline-block;
+  text-align: center;
+  &:hover {
+    background: #f6f8f9;
+    border-radius: $project-card-link-card-radius;
+    transform: translateY(-5px);
+  }
+  .project-card-link-card {
+    width: $project-card-link-card-size;
+    height: $project-card-link-card-size;
+    border-radius: $project-card-link-card-radius;
+    .icon {
+      transform: translateY(-50%);
+      margin-top: 50%;
+    }
+  }
+  .project-card-link-name {
+    background: transparent;
+  }
+}
+.sidebar-task {
+  .sidebar-content {
+    width: 400px;
+  }
+}
+
+
+.ghost {
+  $ghost-color: #FFFFFFFF;
+  $ghost-opacity: .3;
+  background: $ghost-color !important;
+  color: $ghost-color !important;
+  opacity: $ghost-opacity !important;
+  * {
+    background: $ghost-color !important;
+    color: $ghost-color !important;
+    opacity: $ghost-opacity !important;
+  }
+
+}
+
+.drag {
+
+}
+.content {
+  width: 100%;
+  padding: .5rem 1.5rem;
+}
