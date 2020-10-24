@@ -25,7 +25,7 @@ export default {
     {src: '~/plugins/axios', ssr: false},
     {src: '~/plugins/moment', ssr: false},
     {src: '~/plugins/providers', ssr: false},
-    {src: '~/plugins/calendar', ssr: false}
+    {src: '~/plugins/calendar', ssr: false},
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

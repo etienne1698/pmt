@@ -4,14 +4,21 @@
       fullheight
       position="static"
       type="is-light"
-      open
+      :open="$store.state.ui.sideBarOpen"
       v-if="isAuthenticated"
     >
-      <div class="p-1">
-        <router-link to="/">
-          PMT
-        </router-link>
+      <div class="level pl-4 pr-2 pt-4">
+        <div class="level-start">
+          <router-link to="/" class="level-item">
+            PMT
+          </router-link>
+        </div>
+        <div class="level-end">
+          <b-button type="is-white" class="transparent-button" @click="$store.commit('ui/changeSideBar', false)">
+            <b-icon icon="menu"/>
+          </b-button>
 
+        </div>
       </div>
       <ul class="menu-list">
         <li

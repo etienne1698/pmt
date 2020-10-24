@@ -16,7 +16,7 @@
                          :key="project.id"
                          @click="goToProject(project)"
                          :name="project.name"
-                         icon="view-dashboard"
+                         icon="view-dashboard-outline"
                          :color="project.color"
         />
         <ProjectEdit>

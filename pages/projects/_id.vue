@@ -1,85 +1,90 @@
 <template>
-  <section class="content">
-    <section id="project">
-      <header>
-        <div>
+  <section>
+    <Header>
+      <div slot="start">
         <span class="project-name" :style="{color: project.color}">
             {{ project.name }}
           </span>
 
-          <ProjectEdit :value="project">
-            <b-button type="is-white" class="transparent-button">
-              <b-icon icon="pen" size="is-small"/>
-            </b-button>
-          </ProjectEdit>
-
-        </div>
-        <div>
-          <b-button @click="hideDoneTasks = !hideDoneTasks"
-                    v-if="hideDoneTasks"
-                    icon-left="checkbox-marked-circle">
-            Display done tasks
+        <ProjectEdit :value="project">
+          <b-button type="is-white" class="transparent-button">
+            <b-icon icon="pen" size="is-small"/>
           </b-button>
-          <b-button @click="hideDoneTasks = !hideDoneTasks"
-                    v-else
-                    icon-left="checkbox-marked-circle-outline">
-            Hide done tasks
-          </b-button>
-        </div>
-      </header>
-      <div id="kanban">
-        <draggable
-          :forceFallback="true"
-          :fallbackClass="'drag'"
-          ghost-class="ghost"
-          class="draggable-section"
-          v-model="sections"
-          group="sections"
-          @change="dndSection($event)">
-          <section class="task-section" v-for="(section, index) of sections" :key="section.id">
-            <div class="task-section-header">
-              <b-input class="task-section-name hidden-input" @change.native="updateSectionName($event, section.id)"
-                       v-model="section.name"></b-input>
-              <div class="task-section-actions">
-                <b-icon icon="plus" @click.native="addTask(section.id, index)"/>
-                <b-dropdown aria-role="list" position="is-bottom-left">
-                  <b-icon icon="dots-horizontal" slot="trigger"/>
+        </ProjectEdit>
 
-                  <b-dropdown-item aria-role="listitem">
-                    <b-button type="is-danger" @click="deleteSection(section)">
-                      Delete
-                    </b-button>
-                  </b-dropdown-item>
-                </b-dropdown>
-              </div>
-            </div>
-            <div class="task-card-content">
-              <draggable
-                class="task-drop-zone"
-                v-model="section.tasks"
-                group="tasks"
-                @change="dndTask($event, section.id)"
-                :forceFallback="true"
-                :fallbackClass="'drag'"
-                ghost-class="ghost">
-                <TaskCard
-                  v-for="task of section.tasks"
-                  :key="task.id"
-                  @deleted="deleteTask(task, section)"
-                  :value="task"
-                  v-show="!hideDoneTasks || !task.done"
-                />
-              </draggable>
-            </div>
-          </section>
-          <section class="task-section" slot="footer">
-            <div class="task-section-header" id="add-section" @click="addSection()">
-              <b-input readonly class="task-section-name  hidden-input" icon="plus" value="Add new section"></b-input>
-            </div>
-          </section>
-        </draggable>
       </div>
-    </section>
+      <div slot="end">
+        <b-button @click="hideDoneTasks = !hideDoneTasks"
+                  v-if="hideDoneTasks"
+                  icon-left="checkbox-marked-circle">
+          Display done tasks
+        </b-button>
+        <b-button @click="hideDoneTasks = !hideDoneTasks"
+                  v-else
+                  icon-left="checkbox-marked-circle-outline">
+          Hide done tasks
+        </b-button>
+      </div>
+    </Header>
+    <div class="content">
+      <section id="project">
+
+        <div id="kanban">
+          <draggable
+            :forceFallback="true"
+            :fallbackClass="'drag'"
+            ghost-class="ghost"
+            class="draggable-section"
+            v-model="sections"
+            group="sections"
+            @change="dndSection($event)">
+            <section class="task-section" v-for="(section, index) of sections" :key="section.id">
+              <div class="task-section-header">
+                <b-input class="task-section-name hidden-input" @change.native="updateSectionName($event, section.id)"
+                         v-model="section.name"></b-input>
+                <div class="task-section-actions">
+                  <b-icon icon="plus" @click.native="addTask(section.id, index)"/>
+                  <b-dropdown aria-role="list" position="is-bottom-left">
+                    <b-icon icon="dots-horizontal" slot="trigger"/>
+
+                    <b-dropdown-item aria-role="listitem">
+                      <b-button type="is-danger" @click="deleteSection(section)">
+                        Delete
+                      </b-button>
+                    </b-dropdown-item>
+                  </b-dropdown>
+                </div>
+              </div>
+              <div class="task-card-content">
+                <draggable
+                  class="task-drop-zone"
+                  v-model="section.tasks"
+                  group="tasks"
+                  @change="dndTask($event, section.id)"
+                  :forceFallback="true"
+                  :fallbackClass="'drag'"
+                  ghost-class="ghost">
+                  <TaskCard
+                    :displayAction="true"
+                    v-for="task of section.tasks"
+                    :key="task.id"
+                    @deleted="deleteTask(task, section)"
+                    :value="task"
+                    v-show="!hideDoneTasks || !task.done"
+                  />
+                </draggable>
+              </div>
+            </section>
+            <section class="task-section" slot="footer">
+              <div class="task-section-header" id="add-section" @click="addSection()">
+                <b-input readonly class="task-section-name  hidden-input" icon="plus" value="Add new section"></b-input>
+              </div>
+            </section>
+          </draggable>
+        </div>
+      </section>
+    </div>
+
   </section>
 
 </template>
@@ -88,6 +93,7 @@
 import TaskCard from "~/components/tasks/card/TaskCard.vue";
 import draggable from 'vuedraggable';
 import ProjectEdit from "~/components/projects/edit/ProjectEdit.vue";
+import Header from "~/components/Header.vue";
 
 export default {
   name: 'ProjectDetailPage',
@@ -98,6 +104,7 @@ export default {
     }
   },
   components: {
+    Header,
     ProjectEdit,
     TaskCard,
     draggable
@@ -211,12 +218,6 @@ export default {
   }
 }
 
-.project-name {
-  color: $primary;
-  font-size: 50px;
-
-}
-
 #project {
   height: 100%;
   overflow-y: hidden;
@@ -246,7 +247,6 @@ export default {
       border-radius: 10px;
       width: 280px;
       margin-right: 8px;
-      padding: 15px;
       cursor: grab;
       .task-card-content {
         height: 100%;

@@ -1,6 +1,13 @@
 <template>
-  <section class="content">
-    <ProjectsCardList />
+  <section>
+    <Header>
+      <span slot="start">
+        Home
+      </span>
+    </Header>
+    <div class="content">
+      <ProjectsCardList />
+    </div>
   </section>
 </template>
 
@@ -8,6 +15,7 @@
 
 
 import ProjectsCardList from "~/components/projects/ProjectsCardList.vue";
+import Header from "~/components/Header.vue";
 export default {
   name: 'HomePage',
   async mounted() {
@@ -22,6 +30,7 @@ export default {
     }
   },
   components: {
+    Header,
     ProjectsCardList
   },
   computed: {

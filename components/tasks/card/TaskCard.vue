@@ -9,14 +9,14 @@
           </div>
         </div>
 
-         <div @click.stop class="task-card-action">
-           <div class="mb-1">
-             <UserPicker @change="userChange" :value="task.user"/>
-           </div>
-           <div>
-             <DueDatePicker @change="dueDateChange" :value="task.dueDate"/>
-           </div>
-         </div>
+      <div @click.stop class="task-card-action mb-2" v-if="displayAction">
+        <div class="mb-1">
+          <UserPicker @change="userChange" :value="task.user"/>
+        </div>
+        <div>
+          <DueDatePicker @change="dueDateChange" :value="task.dueDate"/>
+        </div>
+      </div>
     </div>
     <b-sidebar
       class="sidebar-task"
@@ -36,7 +36,7 @@ import TasksMixin from "~/mixins/TasksMixin";
 
 export default {
   name: 'TaskCard',
-  props: ['value'],
+  props: ['value', 'displayAction'],
   components: {DueDatePicker, UserPicker, TaskEdit},
   mixins:[TasksMixin],
   data: () => {

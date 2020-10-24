@@ -1,21 +1,28 @@
 <template>
-  <section class="content">
-    <vc-calendar
-      is-expanded
-      :attributes="attributes">
-      <template v-slot:day-content="{ day, attributes }">
-        <div class="day-box">
-          <span>{{ day.day }}</span>
-          <TaskCard
-            v-for="attr in attributes"
-            :key="attr.key"
-            @deleted=""
-            :value="attr.customData.task"
-          />
+  <section>
+    <Header>
+      <span slot="start">
+        Calendar
+      </span>
+    </Header>
+    <div class="content">
+      <vc-calendar
+        is-expanded
+        :attributes="attributes">
+        <template v-slot:day-content="{ day, attributes }">
+          <div class="day-box">
+            <span>{{ day.day }}</span>
+            <TaskCard
+              v-for="attr in attributes"
+              :key="attr.key"
+              @deleted=""
+              :value="attr.customData.task"
+            />
 
-        </div>
-      </template>
-    </vc-calendar>
+          </div>
+        </template>
+      </vc-calendar>
+    </div>
   </section>
 </template>
 
@@ -37,7 +44,7 @@ export default {
       return !this.tasks || !this.tasks.length ? [] : this.tasks.map(task => {
         return {
           key: task.id,
-          dates: [task.startDate, task.dueDate],
+          dates: [/*task.startDate,*/ task.dueDate],
           customData: {task}
         };
       });
@@ -55,12 +62,13 @@ export default {
 
 <style lang="scss">
 .vc-grid-container {
-  padding: 0!important;
+  padding: .5rem 1rem;
 }
 .day-box {
   min-height: 5rem;
   height: 100%;
   border: #d2d3d6 1px solid;
   padding:  .1rem .5rem;
+  margin-left: -1px;
 }
 </style>
