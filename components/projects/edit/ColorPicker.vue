@@ -41,8 +41,9 @@ export default {
 
 <style lang="scss">
 .color-picker {
+  font-size: initial;
+  font-weight: initial;
   margin-bottom: 8px;
-
   .colors {
     display: flex;
     justify-content: space-between;
