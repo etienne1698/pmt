@@ -1,5 +1,5 @@
 <template>
-  <vc-date-picker mode="dateTime" :popover="{ visibility: 'click' }" v-model="dateSelected" @input="change">
+  <vc-date-picker mode="dateTime" :popover="{position: 'left', visibility: 'click' }" v-model="dateSelected" @input="change">
     <template v-slot="{ inputValue, inputEvents }" >
       <div :value="inputValue" v-on="inputEvents">
         <div class="picker" v-if="!dateSelected && !input">

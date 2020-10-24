@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts">
-import TaskCard from "~/components/tasks/card/TaskCard.vue";
+import TaskCard from "~/components/tasks/TaskCard.vue";
 import draggable from 'vuedraggable';
 import ProjectEdit from "~/components/projects/edit/ProjectEdit.vue";
 import Header from "~/components/Header.vue";

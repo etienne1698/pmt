@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Task from "~/models/Task";
-import TaskCard from "~/components/tasks/card/TaskCard.vue";
+import TaskCard from "~/components/tasks/TaskCard.vue";
 export default {
   name: "calendar",
   components: {TaskCard},
