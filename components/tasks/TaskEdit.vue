@@ -1,14 +1,11 @@
 <template>
   <div class="pl-2 pr-2 pt-4">
-    <div class="level mb-4">
-
-      <div class="level-left">
+    <div class="task-header is-flex mb-4">
+      <div style="width: 5%">
         <b-checkbox @change.native="toggleDone" v-model="task.done" class="level-item"/>
-        <b-input v-model="task.name" @change.native="rename" class="level-item"/>
       </div>
-      <div class="level-right">
-        <b-button type="is-danger" @click="deleteTask" class="level-item">Delete</b-button>
-      </div>
+      <b-input style="width: 77%" v-model="task.name" @change.native="rename" class="level-item"/>
+      <b-button style="width: 15%;" type="is-danger" @click="deleteTask" class="level-item">Delete</b-button>
     </div>
 
 
@@ -19,7 +16,7 @@
         <DueDatePicker style="width: 49%" @change="dueDateChange" :value="task.dueDate" :input="true"/>
       </b-field>
       <b-field label="User">
-        <UserPickerField @change="userChange" :value="task.user" />
+        <UserPickerField @change="userChange" :value="task.user"/>
       </b-field>
     </div>
   </div>
@@ -30,6 +27,7 @@
 import TasksMixin from "~/mixins/TasksMixin";
 import UserPickerField from "~/components/tasks/UserPickerField.vue";
 import DueDatePicker from "~/components/tasks/DueDatePicker.vue";
+
 export default {
   name: 'TaskDetail',
   components: {UserPickerField, DueDatePicker},
@@ -49,5 +47,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+.task-header {
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

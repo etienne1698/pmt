@@ -26,7 +26,7 @@
         </b-button>
       </div>
     </Header>
-    <div class="content">
+    <div class="content" style="height: 100%">
       <section id="project">
 
         <div id="kanban">
@@ -55,7 +55,7 @@
                   </b-dropdown>
                 </div>
               </div>
-              <div class="task-card-content">
+              <div class="task-section-content">
                 <draggable
                   class="task-drop-zone"
                   v-model="section.tasks"
@@ -246,9 +246,9 @@ export default {
     .task-section {
       border-radius: 10px;
       width: 280px;
-      margin-right: 8px;
+      margin-right: 15px;
       cursor: grab;
-      .task-card-content {
+      .task-section-content {
         height: 100%;
         border-radius: 10px;
       }
